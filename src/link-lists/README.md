@@ -1,7 +1,6 @@
 ---
 title: Link Lists
 sidebar: auto
-
 ---
 
 ## Visualisations
