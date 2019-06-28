@@ -1,0 +1,2 @@
+<ItemFlowList :list="$site.pages" />
+
