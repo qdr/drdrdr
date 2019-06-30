@@ -51,12 +51,5 @@ module.exports = {
 					'https://fonts.googleapis.com/css?family=PT+Serif:400,700|Poppins:500,700'
 			}
 		],
-		['link', { rel: 'manifest', href: '/manifest.json' }],
-		['meta', { name: 'msapplication-TileColor', content: '#ffffff' }],
-		[
-			'meta',
-			{ name: 'msapplication-TileImage', content: '/ms-icon-144x144.png' }
-		],
-		['meta', { name: 'theme-color', content: '#ffffff' }],
 	]
 }

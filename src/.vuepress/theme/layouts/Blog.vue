@@ -243,7 +243,7 @@ function find (page, items, offset) {
 }
 
 .blog__header {
-  padding-top: 4.6rem;
+  padding-top: 3.6rem;
 }
 
 .blog__title {
