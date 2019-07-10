@@ -4,6 +4,9 @@
 Wo gibt der Staat etwas hinein, wo nimmt er etwas heraus. Was wird subventioniert, was besteuert er.
 
 
+## Funktionelle Geschichte der Steuern
+
+
 ## Steuern
 - Politisch-Finanzieller Steuerungsmechanismus
 
@@ -22,7 +25,6 @@ Wo gibt der Staat etwas hinein, wo nimmt er etwas heraus. Was wird subventionier
 ### Land
 - Bodenwertsteuer
 - Resourcensteuern
-
 
 ### Geld
 - Gewinnsteuern

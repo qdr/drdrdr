@@ -15,6 +15,8 @@ sidebar: auto
 * [trade flow](https://visualcapitalist.com/interactive-mapping-flow-international-trade) - International Trade Flows
 * [Harvard Worldmaps](http://worldmap.harvard.edu) - A bunch of interesting world map overlays
 
+* [Reforestation map](https://www.crowtherlab.com/maps-2/)
+
 * [Google Publicdata](https://www.google.com/publicdata/directory) - Googles public data visualizer
 
 - [http://metrocosm.com/](http://metrocosm.com/)
