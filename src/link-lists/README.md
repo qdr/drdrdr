@@ -63,6 +63,7 @@ sidebar: auto
 
 * [youre the real job creator](https://nplusonemag.com/online-only/online-only/youre-the-real-job-creator/)
 
+* [Paper: COMPLETING THE EURO: THE EURO TREASURY AND THE JOB GUARANTEE](http://revistaeconomiacritica.org/sites/default/files/9-CruzHidalgo-Ehnst-Tcherneva_Completing-the-Euro.pdf)
 
 
 ## Mixed

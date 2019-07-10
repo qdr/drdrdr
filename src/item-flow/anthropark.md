@@ -7,6 +7,3 @@ image: 2019/anthropark.png
 excerpt:
 link: http://www.anthropark.wz.cz/
 ---
-
-
-

@@ -7,6 +7,3 @@ image: 2019/konva.png
 excerpt:
 link: https://konvajs.org/
 ---
-
-
-

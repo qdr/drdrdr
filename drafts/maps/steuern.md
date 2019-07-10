@@ -3,6 +3,8 @@
 
 Wo gibt der Staat etwas hinein, wo nimmt er etwas heraus. Was wird subventioniert, was besteuert er.
 
+Welche sind regressiv welche progressiv?
+
 
 ## Funktionelle Geschichte der Steuern
 
