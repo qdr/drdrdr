@@ -1,12 +1,14 @@
 
 ## Steuern und die Umverteilungsfrage
 
-Wo gibt der Staat etwas hinein, wo nimmt er etwas heraus. Was wird subventioniert, was besteuert er.
+Was wird subventioniert, was sanktioniert. Welche Verhaltensveränderungen werden bezweckt. Zu welchen Gunsten.
 
-Welche sind regressiv welche progressiv?
+* Rezessive und Progressive Steuern
 
 
-## Funktionelle Geschichte der Steuern
+## Funktionale Geschichte des Steuerwesens
+- ? Recherchieren
+- Rinder / Salz / Getreide / Fronarbeit
 
 
 ## Steuern
@@ -14,7 +16,6 @@ Welche sind regressiv welche progressiv?
 
 ## Regulation
 - Politisch-Juristischer Steuerungsmechanismus 
-
 
 ### Arbeit
 - Einkommenssteuer

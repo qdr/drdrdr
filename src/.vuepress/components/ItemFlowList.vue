@@ -34,7 +34,7 @@ export default {
     data() {
         return {
             displayRange: {
-                end: 12
+                end: 6
             },
             selectedTag: ''
         }
@@ -81,7 +81,7 @@ export default {
             return dateFormat.toLocaleDateString('en-US', options)
         },
         loadMore() {
-            this.displayRange.end += 12
+            this.displayRange.end += 6
         },
         updateSelectedTag(tag) {
             this.selectedTag = tag
@@ -94,7 +94,7 @@ export default {
 	<div class="blog-list__container"> 
 
         <ul class="blog-list">
-            <li v-for="(item, index) in filteredList"
+            <li v-for="(item, index) in filteredList" v-if="index < displayRange.end"
                 class="blog-list__item">
 
                 <section class="blog-post">
@@ -119,7 +119,6 @@ export default {
                     
                     <hr>
             </section>
-
               
             </li>
         </ul>
