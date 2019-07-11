@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="js/konva.min.js"></script>
+    <script src="js/canvasjs.min.js"></script>
+    <script src="tooltips.js"></script>
+
+
+    <meta charset="utf-8" />
+    <title>Konva Rect Demo</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #f0f0f0;
+        }
+
+        #slider {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        #assets_slider {
+            position: absolute;
+            top: 40px;
+            left: 20px;
+        }
+        #liabilities_slider {
+            position: absolute;
+            top: 60px;
+            left: 20px;
+        }
+        #new_credit {
+            position: absolute;
+            top: 20px;
+            left: 180px;
+        }
+    </style>
+
+    <script>
+
+    </script>
+</head>
+
+<body>
+    <div id="container"></div>
+    <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+    <input id="slider" type="range" min="0" max="200" step="0.05" value="0" />
+    <input id="assets_slider" type="range" min="0" max="200" step="0.05" value="0" />
+    <input id="liabilities_slider" type="range" min="0" max="200" step="0.05" value="0" />
+
+    <input id="new_credit" type="button" value="New Credit">
+
+    <script>
+        // first we need to create a stage
+        var stage = new Konva.Stage({
+            container: 'container', // id of container <div>
+            width: 600,
+            height: 500
+        });
+        // then create layer
+        var layer = new Konva.Layer();
+                   
+
+
+        var simpleText = new Konva.Text({
+        x: stage.width() / 2,
+        y: 25,
+        text: 'Macro Mechanics',
+        fontSize: 30,
+        fontFamily: 'Arial',
+        fill: 'black'
+         });
+         layer.add(simpleText);
+
+
+
+        var assets = new Konva.Rect({
+            x: 270,
+            y: 250,
+            width: 80,
+            height: 0,
+            fill: '#8bdf6dc4',
+            opacity: 0.8,
+            });
+        // add the shape to the layer
+        layer.add(assets)
+
+        var liabilities = new Konva.Rect({
+            x: 150 + 200,
+            y: 250,
+            width: 80,
+            height: 0,
+            fill: '#c82c2c5c',
+            opacity: 0.8,
+            });
+        // add the shape to the layer
+        layer.add(liabilities)
+
+       
+        // add the layer to the stage
+        stage.add(layer);
+
+        // draw the image
+
+        window.onload = function () {
+
+            var dps = []; // dataPoints
+            var dps1 = []; // dataPoints
+            var chart = new CanvasJS.Chart("chartContainer", {
+                title: {
+                    text: "Economic Time"
+                },
+                axisY: {
+                    title: "Liabilities / Assets",
+                    includeZero: true,
+                },
+                axisY2: {
+                    title: "Liabilities",
+                    includeZero: true,
+                },
+                data: [{
+                    type: "line",
+                    name: "Assets",
+                    showInLegend: true,
+                    dataPoints: dps
+                },
+                {
+                    type: "line",
+                    name: "Liabilities",
+                    showInLegend: true,
+                    dataPoints: dps1
+                }]
+              
+            });
+
+            // Sliders
+            var slider = document.getElementById('slider');
+            var assets_slider = document.getElementById('assets_slider');
+            var liabilities_slider = document.getElementById('liabilities_slider');
+            var new_credit = document.getElementById('new_credit');
+            
+            var xVal = 0;
+            var yVal = 0;
+            var a_yVal = 0;
+            var l_yVal = 0;
+            var updateInterval = 60;
+            var dataLength = 200; // number of dataPoints visible at any point
+
+
+            var updateChart = function (count) {
+
+                count = count || 1;
+                slider.oninput = function () {
+                    yVal = Math.floor(slider.value);
+                    a_yVal = Math.floor(slider.value);
+                    assets_slider.value = Math.floor(slider.value);
+                    liabilities_slider.value = Math.floor(slider.value);
+
+                    l_yVal = Math.floor(slider.value);
+
+                    assets.setHeight(Math.floor(-slider.value));
+                    liabilities.setHeight(Math.floor(-slider.value)); 
+
+                };
+                assets_slider.oninput = function() {
+                    a_yVal = Math.floor(assets_slider.value);
+                    assets.setHeight(Math.floor(-assets_slider.value));
+                };
+
+                 liabilities_slider.oninput = function() {
+                    l_yVal = Math.floor(liabilities_slider.value);
+                    liabilities.setHeight(Math.floor(-liabilities_slider.value));
+                };
+
+                new_credit.onclick = function() {
+
+                    lcurrentHeight = liabilities.attrs.height;
+                    acurrentHeight = assets.attrs.height;
+                    liabilities.setHeight(lcurrentHeight -= 20);
+                    assets.setHeight(acurrentHeight -= 20);
+                    a_yVal += 20;
+                    l_yVal += 20;
+
+                };
+
+                for (var j = 0; j < count; j++) {
+                    // yVal = yVal + Math.round(5 + Math.random() * (100));
+                    dps.push({
+                        x: xVal,
+                        y: a_yVal,
+                    });
+                    dps1.push({
+                        x: xVal,
+                        y: -l_yVal,
+                    });
+                    xVal++;
+                }
+
+                if (dps.length > dataLength) {
+                    dps.shift();
+                }
+                if (dps1.length > dataLength) {
+                    dps1.shift();
+                }
+                layer.draw();
+                chart.render();
+            };
+
+            updateChart(dataLength);
+            setInterval(function () {
+                updateChart()
+            }, updateInterval);
+
+        }
+
+//
+// Tooltips
+//
+        
+var tooltipLayer = new Konva.Layer();
+
+
+assets.on('mouseover', function() {
+});
+
+assets.on('mousemove', function() {
+    assets.setOpacity(1);
+    var mousePos = stage.getPointerPosition();
+    tooltip.position({
+      x: mousePos.x + 10,
+      y: mousePos.y + 10,
+    });
+    tooltip.text(`Assets: ${-assets.attrs.height}`);
+    tooltip.show();
+    tooltipLayer.batchDraw();
+  });
+
+  assets.on('mouseout', function() {
+    assets.setOpacity(0.8);
+    tooltip.hide();
+    tooltipLayer.draw();
+  });
+
+  layer.add(assets);
+
+
+  liabilities.on('mousemove', function() {
+    liabilities.setOpacity(1);
+    var mousePos = stage.getPointerPosition();
+    tooltip.position({
+      x: mousePos.x + 10,
+      y: mousePos.y + 10
+    });
+    tooltip.text(`Liabilities: ${-liabilities.attrs.height}`);
+    tooltip.show();
+    tooltipLayer.batchDraw();
+  });
+
+  liabilities.on('mouseout', function() {
+    liabilities.setOpacity(0.8);
+    tooltip.hide();
+    tooltipLayer.draw();
+  });
+
+  layer.add(liabilities);
+
+  var tooltip = new Konva.Text({
+    text: '',
+    fontFamily: 'Calibri',
+    fontSize: 14,
+    padding: 5,
+    textFill: 'white',
+    fill: 'black',
+    alpha: 0.75,
+    visible: false
+  });
+
+  tooltipLayer.add(tooltip);
+
+  stage.add(tooltipLayer);
+
+
+
+
+
+
+
+
+
+        
+    </script>
+</body>
+
+</html>
