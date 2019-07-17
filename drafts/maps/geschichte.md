@@ -1,7 +1,10 @@
 ## Geschichts-mapping
 
+## Cosmic Time
+- Urknall - Earth
+
 ## Erdzeitalter
-- 4.2ma till anthropozän
+- 4.1ma till stone-age
 
 ## Menschheitsgeschichte
 
@@ -11,13 +14,22 @@
 - Altertum - heute 3.600bc - 2020ac
   
 
-## Ausdifferenzieurung der Institutionen des (Staates, Kultur)
+## Ausdifferenzierung der Institutionen des (Staates, Kultur, Wirtschaft) - jeder Menschengruppe
 - Schamanismus
 - Megalithismus
 - Tempel
-- Staatsbildung (König, Priester)
+- Staatsbildung (König, Priester, Richter)
 - Soziale Verträge (Abmachungen, Flüche, Schulden, Gesetze..)
 - Schrift 
-- Netzwerke (Straßen, Handel)
+- Netzwerke (Straßen, Städte, Handel)
 - Grenzen (lokal, regional, staat)
 
+
+
+### Kultur / Indentifikation
+Mündliche Erzählung
+Performative Erzählung
+Schriftliche Erzählung
+
+#### Gruppenidentitäten
+Stammes/Gruppen/Nation/International

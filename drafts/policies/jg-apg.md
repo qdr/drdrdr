@@ -17,8 +17,7 @@ Green New Deal als Investitionsprogramm. Unter der Haube ist der GND aber Rot-Gr
 - Was für Arbeit? 
 - Was macht Sinn? 
 
-- 
-
+  
 
 ## Finanzierung
 - Defizit statt Besteuern als Automatischer Stabilisierer

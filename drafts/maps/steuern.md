@@ -10,7 +10,6 @@ Was wird subventioniert, was sanktioniert. Welche Verhaltensveränderungen werde
 - ? Recherchieren
 - Rinder / Salz / Getreide / Fronarbeit
 
-
 ## Steuern
 - Politisch-Finanzieller Steuerungsmechanismus
 
