@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="js/konva.min.js"></script>
+    <script src="js/canvasjs.min.js"></script>
+    <script src="js/random.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+
+
+
+    <meta charset="utf-8" />
+    <title>Distribution Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #f0f0f0;
+        }
+
+        input {
+            position: absolute;
+        }
+
+        #slider {
+            top: 20px;
+            left: 20px;
+        }
+
+        #assets_slider {
+            top: 40px;
+            left: 20px;
+        }
+
+        #liabilities_slider {
+            top: 60px;
+            left: 20px;
+        }
+
+        #random_button {
+            top: 60px;
+            left: 20px;
+        }
+    </style>
+
+    <script>
+
+    </script>
+</head>
+
+<body>
+    <div id="container"></div>
+    <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+    <input id="slider" type="range" min="0" max="200" step="0.05" value="0" />
+    <input id="assets_slider" type="range" min="0" max="200" step="0.05" value="0" />
+    <input id="liabilities_slider" type="range" min="0" max="200" step="0.05" value="0" />
+
+    <input id="random_button" type="button" value="random">
+
+    <script>
+        // defs
+        // first we need to create a stage
+        var stage = new Konva.Stage({
+            container: 'container', // id of container <div>
+            width: 600,
+            height: 500
+        });
+        // then create layer
+        var layer = new Konva.Layer();
+
+        var simpleText = new Konva.Text({
+            x: stage.width() / 2,
+            y: 25,
+            text: 'Distributions',
+            fontSize: 30,
+            fontFamily: 'Arial',
+            fill: 'black'
+        });
+        layer.add(simpleText);
+
+        var incomeText = new Konva.Text({
+            x: 550,
+            y: 135,
+            text: 'Income:',
+            fontSize: 12,
+            fontFamily: 'Arial',
+            fill: 'black'
+        });
+        layer.add(incomeText);
+
+        // add the layer to the stage
+        stage.add(layer);
+
+        // draw the image
+
+        window.onload = function () {
+
+
+            /// BIN Test
+
+            var uniform = new Random.NormalDistribution(10, 20);
+
+            var arr = []
+            for (i in [...Array(1000).keys()]) {
+                arr[i] = uniform.sample()
+            };
+            console.log(arr);
+            var histogram = d3.histogram()
+            var bins = histogram(arr);
+
+            var random_button = document.getElementById('random_button');
+ 
+            random_button.onclick = function() {
+            randomize_data();
+            chart.render();
+            var uniform = new Random.UniformDistribution(10, 130);
+            };
+
+            var data = [];
+            bin_data();
+
+
+            var chart = new CanvasJS.Chart("chartContainer", {
+                title: {
+                    text: "Random Distribution"
+                },
+                axisY: {
+                    title: "Number of Locations",
+                    lineColor: "#4F81BC",
+                    tickColor: "#4F81BC",
+                    labelFontColor: "#4F81BC"
+                },
+                axisY2: {
+                    title: "Percent",
+                    suffix: "%",
+                    lineColor: "#C0504E",
+                    tickColor: "#C0504E",
+                    labelFontColor: "#C0504E"
+                },
+                data: [{
+                    type: "column",
+                    dataPoints: data,
+                }]
+            });
+            
+            chart.render();
+            createPareto();
+
+
+            function createPareto() {
+                var dps = [];
+
+                var yValue, yTotal = 0,
+                    yPercent = 0;
+
+                for (var i = 0; i < chart.data[0].dataPoints.length; i++)
+                    yTotal += chart.data[0].dataPoints[i].y;
+
+                for (var i = 0; i < chart.data[0].dataPoints.length; i++) {
+                    yValue = chart.data[0].dataPoints[i].y;
+                    yPercent += (yValue / yTotal * 100);
+                    dps.push({
+                        label: chart.data[0].dataPoints[i].label,
+                        y: yPercent
+                    });
+                    
+                }
+
+                chart.addTo("data", {
+                    type: "line",
+                    yValueFormatString: "0.##\"%\"",
+                    dataPoints: dps
+                });
+                chart.data[1].set("axisYType", "secondary", false);
+                chart.axisY[0].set("maximum", yTotal);
+                chart.axisY2[0].set("maximum", 100);
+            }
+
+            function randomize_data() {
+
+                for (i in [...Array(20).keys()]) {
+                    data[i] = {
+                        "label": i,
+                        "y": Math.random()
+                    }
+                }
+            };
+            function bin_data() {
+            for (i in bins) {
+                data[i] = {
+                    "label": i,
+                    "y": bins[i].length,
+    }
+    console.log(data);
+}
+};
+
+        }
+    </script>
+</body>
+
+</html>
