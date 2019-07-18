@@ -1,6 +1,5 @@
 ## Models Meta
 
-
 ### Embeddedness
 Reflective of Polanyi..
 
