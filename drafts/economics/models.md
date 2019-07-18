@@ -3,7 +3,9 @@
 ### Embeddedness
 Reflective of Polanyi..
 
-You can't really grasp embedded economies with numbers and models .. map/landscape
+You can't really grasp embedded economies with numbers and models .. map/landscape.
+but games? 
+
 - Ficticious Capitals
     - Work
     - Nature

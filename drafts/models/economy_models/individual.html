@@ -91,6 +91,15 @@
             top: 390px;
             left: 600px;
         }
+        #age{
+            position:absolute;
+            top: 470px;
+            left: 600px;
+        }
+        #speed_slider{
+            top: 470px;
+            left: 100px;
+        }
     </style>
 
     <script>
@@ -124,6 +133,9 @@
 
      <input id="expenses_slider" type="range" min="0" max="2400" step="1" value="0" />
     <input type="text" id="expenses_text" value="0">
+    <div id="age" value="12"></div>
+    <input id="speed_slider" type="range" min="1" max="200" step="1" value="20" />
+
 
 
     <script>
@@ -165,6 +177,16 @@
         fill: 'black'
          });
          layer.add(expensesText);
+
+        var ageText = new Konva.Text({
+        x: 540,
+        y: 475,
+        text: 'Age:',
+        fontSize: 12,
+        fontFamily: 'Arial',
+        fill: 'black'
+         });
+         layer.add(ageText);
 
         var assets = new Konva.Rect({
             x: 270,
@@ -247,13 +269,14 @@
             var invest_button = document.getElementById('invest_button');
             var invest_sum = document.getElementById('invest_sum');
             var invest_percentage = document.getElementById('invest_percentage');
-
+            var age_text = document.getElementById('age');
+            var speed_slider = document.getElementById('speed_slider');
 
             var xVal = 0;
             var yVal = 0;
             var a_yVal = 0;
             var l_yVal = 0;
-            var updateInterval = 200;
+            var updateInterval = 100;
             var dataLength = 200; // number of dataPoints visible at any point
             
             var portfolio = {
@@ -321,6 +344,8 @@
                    invest_text.value = invest_slider.value;
                 }
                 // investmm....
+
+                
                 
 
                 function sum(obj) {
@@ -330,17 +355,23 @@
                 var dividends = 12
 
                 var return_dividends = function(){
-                    console.log(portfolio.investment.amount)
                     return portfolio.investment.amount * (portfolio.investment.percentage / 100 / 30) 
                 }
-
+                
+                var age_num = age_text.innerHTML;
+                var age = 0;
 
                 var updatePortfolio = function (xVal) {
+
                     if (xVal % 30 == 0 ) {
                     a_yVal += parseInt(portfolio["p_income"]);
                     }
                     else if (xVal % 30 == 3) {
                     a_yVal += parseInt(-portfolio["p_expenses"]);
+                    }
+                    else if (xVal % 356 == 0) {
+                    age_num++ ;
+                    age_text.innerHTML = age_num;
                     }
                         
                     a_yVal = a_yVal + return_dividends()
@@ -377,7 +408,12 @@
             };
 
 
-            
+            speed_slider.oninput = function() {
+                    updateInterval = speed_slider.value;
+                    console.log(updateInterval);
+                    console.log(speed_slider.value);
+
+                }
             updateChart(dataLength);
             setInterval(function () {
                 updateChart()
