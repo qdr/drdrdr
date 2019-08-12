@@ -87,6 +87,7 @@
 	var NormalDistribution = (function() {
 		var dist = function(mean, sd) {
 			if(!Number.isFinite(sd) || sd <= 0) {
+                console.log("is under null....")
 				throw "Standard deviation value needs to be a number larger than 0";
 			}
 			if(!Number.isFinite(mean)) {

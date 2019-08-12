@@ -99,15 +99,24 @@
 
             /// BIN Test
 
-            var uniform = new Random.NormalDistribution(10, 20);
-
-            var arr = []
+            var uniform = new Random.NormalDistribution(10, 1);
+            var normal = new Random.NormalDistribution(10, 1);
+ 	        var result = normal.sample();
+ 	        console.log(result);
+            
+             var arr = []
             for (i in [...Array(1000).keys()]) {
                 arr[i] = uniform.sample()
             };
             console.log(arr);
-            var histogram = d3.histogram()
-            var bins = histogram(arr);
+            var histogram = d3.histogram().value(d => d).thresholds();
+            // var bins = histogram(arr);/
+
+            var bin = d3.bin()
+                        .domain(x.domain())
+                        .thresholds(x.ticks(20));
+            var bins = bin(arr);
+
 
             var random_button = document.getElementById('random_button');
  
